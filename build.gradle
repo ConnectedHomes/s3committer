@@ -6,8 +6,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'nebula.javadoc-jar'
-apply plugin: 'nebula.source-jar'
 apply plugin: 'maven' // make pom files for deployment
 apply plugin: 'com.github.johnrengelman.shadow'
 
@@ -34,6 +32,8 @@ dependencies {
   provided 'org.apache.hadoop:hadoop-client:2.7.2'
   provided 'org.apache.hadoop:hadoop-aws:2.7.2'
   provided 'com.google.guava:guava:11.0.2'
+  provided 'org.apache.parquet:parquet-hadoop:1.9.0'
+
 
   testCompile 'org.apache.hadoop:hadoop-hdfs:2.7.2:tests'
   testCompile 'org.apache.hadoop:hadoop-common:2.7.2:tests'

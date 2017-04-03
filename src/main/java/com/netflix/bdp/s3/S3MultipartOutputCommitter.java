@@ -34,6 +34,7 @@ import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.JobStatus;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter;
+import org.apache.parquet.hadoop.ParquetOutputCommitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
@@ -46,7 +47,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-class S3MultipartOutputCommitter extends FileOutputCommitter {
+class S3MultipartOutputCommitter extends ParquetOutputCommitter {
 
   private static final Logger LOG = LoggerFactory.getLogger(
       S3MultipartOutputCommitter.class);
@@ -68,7 +69,7 @@ class S3MultipartOutputCommitter extends FileOutputCommitter {
 
   public S3MultipartOutputCommitter(Path outputPath, JobContext context)
       throws IOException {
-    super(outputPath, context);
+    super(outputPath, (TaskAttemptContext)context);
     this.constructorOutputPath = outputPath;
 
     Configuration conf = context.getConfiguration();

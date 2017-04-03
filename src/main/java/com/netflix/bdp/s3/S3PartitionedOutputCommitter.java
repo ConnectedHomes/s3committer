@@ -111,6 +111,7 @@ public class S3PartitionedOutputCommitter extends S3MultipartOutputCommitter {
     FileSystem s3 = getOutputPath(context)
         .getFileSystem(context.getConfiguration());
     Set<Path> partitions = Sets.newLinkedHashSet();
+    LOG.info("The partitions are: " + partitions);
     for (S3Util.PendingUpload commit : pending) {
       Path filePath = new Path(
           "s3://" + commit.getBucketName() + "/" + commit.getKey());
